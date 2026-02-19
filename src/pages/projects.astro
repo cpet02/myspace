@@ -1,0 +1,70 @@
+---
+// projects.astro - Coding projects page
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Coding Projects - Personal Website">
+  <header class="page-header">
+    <h1 class="page-title">Coding Projects</h1>
+  </header>
+
+
+
+  <section class="projects-grid">
+    <!-- Project 1 -->
+    <article class="project-card">
+      <h3 class="project-title">Web Application</h3>
+      <div class="project-meta">
+        <span class="tech">React, Node.js, MongoDB</span>
+        <span class="status">Completed</span>
+      </div>
+      <p class="project-description">A full-stack web application with user authentication, real-time features, and responsive design.</p>
+      <div class="project-links">
+        <a href="#" class="project-link">View Demo</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </article>
+    
+    <!-- Project 2 -->
+    <article class="project-card">
+      <h3 class="project-title">API Service</h3>
+      <div class="project-meta">
+        <span class="tech">Python, FastAPI, PostgreSQL</span>
+        <span class="status">In Progress</span>
+      </div>
+      <p class="project-description">RESTful API service with comprehensive documentation, rate limiting, and caching.</p>
+      <div class="project-links">
+        <a href="#" class="project-link">API Docs</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </article>
+    
+    <!-- Project 3 -->
+    <article class="project-card">
+      <h3 class="project-title">Static Site Generator</h3>
+      <div class="project-meta">
+        <span class="tech">JavaScript, Markdown</span>
+        <span class="status">Completed</span>
+      </div>
+      <p class="project-description">Custom static site generator that transforms Markdown files into optimized HTML/CSS.</p>
+      <div class="project-links">
+        <a href="#" class="project-link">View Example</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </article>
+    
+    <!-- Project 4 -->
+    <article class="project-card">
+      <h3 class="project-title">Data Visualization Tool</h3>
+      <div class="project-meta">
+        <span class="tech">D3.js, TypeScript</span>
+        <span class="status">Planned</span>
+      </div>
+      <p class="project-description">Interactive data visualization library for creating custom charts and graphs.</p>
+      <div class="project-links">
+        <a href="#" class="project-link">View Concept</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </article>
+  </section>
+</Layout>

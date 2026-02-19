@@ -1,0 +1,57 @@
+---
+// Layout.astro - Main layout wrapper
+interface Props {
+  title?: string;
+}
+const { title = 'Personal Website' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <link rel="stylesheet" href="/styles/global.css">
+  <!-- Google Fonts - Merriweather with Crimson Text accent -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Review selection JavaScript -->
+  <script src="/js/reviews.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="main-nav">
+        <a href="/" class="logo">Christian Petricca</a>
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/music" class="nav-link">Music Reviews</a></li>
+          <li><a href="/movies" class="nav-link">Movie Reviews</a></li>
+          <li><a href="/projects" class="nav-link">Coding Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <slot />
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Personal Website. Built with Astro.</p>
+      <p class="footer-links">
+        <a href="/">Home</a> · 
+        <a href="/music">Music</a> · 
+        <a href="/movies">Movies</a> · 
+        <a href="/projects">Projects</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

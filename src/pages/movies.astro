@@ -1,0 +1,48 @@
+---
+// movies.astro - Movie reviews page
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Movie Reviews - Personal Website">
+  <header class="page-header">
+    <h1 class="page-title">Movie Reviews</h1>
+  </header>
+
+  <!-- Featured Review -->
+  <section class="featured-review">
+    <h2 class="section-title">Featured Review</h2>
+    <article class="review-card featured">
+      <div class="review-image">
+        <img src="/images/movies/12angrymen.jpg" alt="12 Angry Men" class="review-img">
+      </div>
+      <div class="review-content">
+        <h3 class="review-title">12 Angry Men</h3>
+        <div class="review-meta">
+          <span class="director">Sidney Lumet</span>
+          <span class="year">1957</span>
+          <span class="rating">★★★★★</span>
+        </div>
+        <p class="review-excerpt">engaging one-room legal drama, I loved the acting and the atmosphere, 9.5/10</p>
+
+      </div>
+    </article>
+  </section>
+
+  <!-- Review List -->
+  <section class="review-list">
+    <h2 class="section-title">All Reviews</h2>
+    <div class="reviews-grid">
+      <!-- Featured review also appears here -->
+      <article class="review-card" data-review-id="12angrymen">
+        <h3 class="review-title">12 Angry Men</h3>
+        <div class="review-meta">
+          <span class="director">Sidney Lumet</span>
+          <span class="year">1957</span>
+          <span class="rating">★★★★★</span>
+        </div>
+        <p class="review-excerpt">engaging one-room legal drama, I loved the acting and the atmosphere, 9.5/10</p>
+        <button class="select-review-btn" data-review-id="12angrymen">Select Review</button>
+      </article>
+    </div>
+  </section>
+</Layout>

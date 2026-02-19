@@ -1,0 +1,40 @@
+---
+// index.astro - Home page
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home - Personal Website">
+  <section class="hero">
+    <h1 class="hero-title">Christian Petricca</h1>
+    <div class="hero-subtitle">
+      <span class="hero-tag">Coding Projects</span>
+      <span class="hero-divider">•</span>
+      <span class="hero-tag">Movie Reviews</span>
+      <span class="hero-divider">•</span>
+      <span class="hero-tag">Music Reviews</span>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <h2 class="section-title">What's new</h2>
+    <div class="preview-grid">
+      <article class="preview-card">
+        <h3 class="preview-title">Music Reviews</h3>
+        <p>thoughts and feelings on the music I listen to</p>
+        <a href="/music" class="preview-link">Browse Reviews →</a>
+      </article>
+      
+      <article class="preview-card">
+        <h3 class="preview-title">Movie Reviews</h3>
+        <p>what I'm watching lately</p>
+        <a href="/movies" class="preview-link">Browse Reviews →</a>
+      </article>
+      
+      <article class="preview-card">
+        <h3 class="preview-title">Coding Projects</h3>
+        <p>my personal projects, finished and unfinished</p>
+        <a href="/projects" class="preview-link">View Projects →</a>
+      </article>
+    </div>
+  </section>
+</Layout>

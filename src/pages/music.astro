@@ -1,0 +1,48 @@
+---
+// music.astro - Music reviews page
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Music Reviews - Personal Website">
+  <header class="page-header">
+    <h1 class="page-title">Music Reviews</h1>
+  </header>
+
+  <!-- Featured Review -->
+  <section class="featured-review">
+    <h2 class="section-title">Featured Review</h2>
+    <article class="review-card featured">
+      <div class="review-image">
+        <img src="/images/music/seefeelquique.jpg" alt="Quique by Seefeel" class="review-img">
+      </div>
+      <div class="review-content">
+        <h3 class="review-title">Quique</h3>
+        <div class="review-meta">
+          <span class="artist">Seefeel</span>
+          <span class="year">1993</span>
+          <span class="rating">★★★★☆</span>
+        </div>
+        <p class="review-excerpt">great atmospheric ambient album with spacey instrumentals, and wide soundscapes 4/5</p>
+
+      </div>
+    </article>
+  </section>
+
+  <!-- Review List -->
+  <section class="review-list">
+    <h2 class="section-title">All Reviews</h2>
+    <div class="reviews-grid">
+      <!-- Featured review also appears here -->
+      <article class="review-card" data-review-id="seefeelquique">
+        <h3 class="review-title">Quique</h3>
+        <div class="review-meta">
+          <span class="artist">Seefeel</span>
+          <span class="year">1993</span>
+          <span class="rating">★★★★☆</span>
+        </div>
+        <p class="review-excerpt">great atmospheric ambient album with spacey instrumentals, and wide soundscapes 4/5</p>
+        <button class="select-review-btn" data-review-id="seefeelquique">Select Review</button>
+      </article>
+    </div>
+  </section>
+</Layout>
