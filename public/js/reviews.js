@@ -69,15 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
       featuredSection.style.display = 'none';
     }
     
-    // Show the back button
+    // Hide the external back button container
     if (backButtonContainer) {
-      backButtonContainer.style.display = 'block';
-    }
-    
-    // Update the back button text
-    const backButton = backButtonContainer.querySelector('.back-to-featured-btn');
-    if (backButton) {
-      backButton.textContent = '← Back to Featured Review';
+      backButtonContainer.style.display = 'none';
     }
     
     // Find the selected review card in "All Reviews"
@@ -180,13 +174,46 @@ document.addEventListener('DOMContentLoaded', function() {
       // Ensure proper padding for selected review content
       reviewContent.style.padding = '3.5rem';
       
+      // Create back button for inside the selected review
+      const insideBackButton = document.createElement('button');
+      insideBackButton.className = 'back-to-featured-btn inside-card';
+      insideBackButton.textContent = '← Back to Featured Review';
+      insideBackButton.style.marginTop = 'var(--space-md)';
+      insideBackButton.style.padding = '0.75rem 1.5rem';
+      insideBackButton.style.background = 'var(--color-accent)';
+      insideBackButton.style.color = 'var(--color-bg-alt)';
+      insideBackButton.style.border = '1px solid var(--color-accent-secondary)';
+      insideBackButton.style.borderRadius = 'var(--radius-sm)';
+      insideBackButton.style.fontFamily = 'var(--font-accent)';
+      insideBackButton.style.fontWeight = '600';
+      insideBackButton.style.cursor = 'pointer';
+      insideBackButton.style.transition = 'all 0.2s ease';
+      
+      insideBackButton.addEventListener('mouseenter', function() {
+        this.style.background = 'var(--color-accent-light)';
+        this.style.transform = 'translateY(-2px)';
+      });
+      
+      insideBackButton.addEventListener('mouseleave', function() {
+        this.style.background = 'var(--color-accent)';
+        this.style.transform = 'translateY(0)';
+      });
+      
+      insideBackButton.addEventListener('click', function() {
+        resetToFeaturedReview();
+      });
+      
+      // Add back button to review content
+      reviewContent.appendChild(insideBackButton);
+      
       // Add to container
       newFeaturedContainer.appendChild(selectedTitle);
       newFeaturedContainer.appendChild(clonedCard);
       
-      // Insert after the back button
-      if (backButtonContainer) {
-        backButtonContainer.parentNode.insertBefore(newFeaturedContainer, backButtonContainer.nextSibling);
+      // Insert after the featured review section (no separate back button container)
+      const featuredSection = document.querySelector('.featured-review');
+      if (featuredSection) {
+        featuredSection.parentNode.insertBefore(newFeaturedContainer, featuredSection.nextSibling);
       }
     }
   }
@@ -198,13 +225,15 @@ document.addEventListener('DOMContentLoaded', function() {
       overlay.remove();
     }
     
+
+    
     // Show the featured review section
     const featuredSection = document.querySelector('.featured-review');
     if (featuredSection) {
       featuredSection.style.display = 'block';
     }
     
-    // Hide the back button
+    // Show the external back button container (for future use)
     if (backButtonContainer) {
       backButtonContainer.style.display = 'none';
     }

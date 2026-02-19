@@ -1,17 +1,26 @@
 /* global.css - Modern editorial styles */
 
-/* CSS Variables - Modern editorial palette */
+/* CSS Variables - Warm notepad palette */
 :root {
-  /* Colors - More sophisticated palette */
-  --color-bg: #f8f9fa; /* Light grey with blue undertone */
-  --color-bg-alt: #ffffff; /* White for cards */
-  --color-text: #1a1a1a; /* Near black for better contrast */
-  --color-text-light: #6c757d;
-  --color-accent: #4361ee; /* Modern blue accent */
-  --color-accent-light: #4895ef;
-  --color-accent-secondary: #f72585; /* Pink for highlights */
-  --color-border: #e9ecef;
-  --color-shadow: rgba(0, 0, 0, 0.08);
+  /* Colors - Warm, aged paper aesthetic */
+  --color-bg: #f8f3e6; /* Aged paper background */
+  --color-bg-alt: #fefcf5; /* Slightly brighter paper for cards */
+  --color-text: #3a3222; /* Warm brown text - like aged ink */
+  --color-text-light: #8a7c65; /* Lighter brown for secondary text */
+  --color-accent: #8b7355; /* Warm brown accent - like leather */
+  --color-accent-light: #a89176; /* Lighter brown */
+  --color-accent-secondary: #c9a86a; /* Golden highlight - like paper clip */
+  --color-border: #e0d6c2; /* Soft brown border */
+  --color-shadow: rgba(58, 50, 34, 0.08); /* Brown-tinted shadow */
+  
+  /* Header specific colors */
+  --color-header-bg: #f5efdf; /* Slightly darker paper for header */
+  --color-header-border: #d4c9af; /* Stronger border for header */
+  --color-header-text: #4a402e; /* Darker brown for header text */
+  
+  /* Decorative elements */
+  --color-rule-line: #e8dfcb; /* Subtle rule lines */
+  --color-highlight: rgba(201, 168, 106, 0.15); /* Golden highlight */
   
   /* Typography - Merriweather with Crimson Text accent */
   --font-heading: 'Merriweather', Georgia, serif;
@@ -60,7 +69,11 @@ body {
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(180deg, var(--color-bg) 0%, #ffffff 100%);
+  background-image: 
+    linear-gradient(90deg, transparent 95%, var(--color-rule-line) 95%),
+    linear-gradient(180deg, var(--color-bg) 0%, #f5f0e4 100%);
+  background-size: 40px 100%, 100% 100%;
+  background-position: 20px 0, 0 0;
   min-height: 100vh;
 }
 
@@ -115,15 +128,30 @@ a:hover {
   padding: 0 var(--container-padding);
 }
 
-/* Header - Modern editorial */
+/* Header - Warm notepad style */
 .site-header {
   padding: var(--space-md) 0;
   margin-bottom: var(--space-lg);
-  background: var(--color-bg-alt);
-  box-shadow: var(--shadow-sm);
+  background: var(--color-header-bg);
+  border-bottom: 3px solid var(--color-header-border);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 2px 8px rgba(58, 50, 34, 0.05);
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-accent-secondary), 
+    transparent);
+  opacity: 0.6;
 }
 
 .main-nav {
@@ -136,8 +164,20 @@ a:hover {
   font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-header-text);
   letter-spacing: -0.02em;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.logo::before {
+  content: '📓';
+  position: absolute;
+  left: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  opacity: 0.7;
 }
 
 .logo:hover {
@@ -157,27 +197,46 @@ a:hover {
   font-size: 0.95rem;
   text-transform: none;
   letter-spacing: 0.02em;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   position: relative;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 50px;
+  background: var(--color-bg-alt);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 4px rgba(58, 50, 34, 0.05);
 }
 
 .nav-link:hover {
   text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(58, 50, 34, 0.1);
+  border-color: var(--color-accent-secondary);
+  background: var(--color-highlight);
+}
+
+.nav-link:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(58, 50, 34, 0.1);
+  transition: all 0.1s ease;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50px;
+  background: linear-gradient(135deg, 
+    rgba(201, 168, 106, 0.1), 
+    rgba(139, 115, 85, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-link:hover::before {
+  opacity: 1;
 }
 
 /* Main content */
@@ -201,16 +260,35 @@ a:hover {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-accent-secondary), 
+    var(--color-border), 
+    var(--color-accent-secondary), 
+    transparent);
+  opacity: 0.5;
 }
 
 .hero-title {
   font-size: 4rem;
   margin-bottom: var(--space-sm);
-  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-text);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    var(--color-accent-secondary), 
+    var(--color-accent), 
+    var(--color-accent-secondary));
+  opacity: 0.7;
 }
 
 .hero-subtitle {
@@ -252,10 +330,13 @@ a:hover {
   background: var(--color-bg-alt);
   border-radius: var(--radius-lg);
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
+  background-image: 
+    linear-gradient(var(--color-highlight) 1px, transparent 1px);
+  background-size: 100% 1.5rem;
 }
 
 .preview-card::before {
@@ -265,7 +346,10 @@ a:hover {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+  background: linear-gradient(90deg, 
+    var(--color-accent), 
+    var(--color-accent-secondary), 
+    var(--color-accent));
 }
 
 .preview-card:hover {
@@ -285,17 +369,46 @@ a:hover {
   margin-top: var(--space-sm);
   font-family: var(--font-accent);
   font-weight: 600;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   background: var(--color-accent);
-  color: white;
-  border-radius: var(--radius-sm);
-  transition: all 0.2s ease;
+  color: var(--color-bg-alt);
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid var(--color-accent-secondary);
+  box-shadow: 0 3px 6px rgba(58, 50, 34, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .preview-link:hover {
   background: var(--color-accent-light);
   text-decoration: none;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(58, 50, 34, 0.15);
+}
+
+.preview-link:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 1px 3px rgba(58, 50, 34, 0.1);
+  transition: all 0.1s ease;
+}
+
+.preview-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.preview-link:hover::before {
+  left: 100%;
 }
 
 /* Review pages - Modern editorial */
@@ -306,6 +419,24 @@ a:hover {
   background: var(--color-bg-alt);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-highlight), 
+    transparent);
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 .page-title {
@@ -323,8 +454,21 @@ a:hover {
   padding: var(--space-md);
   margin-bottom: var(--space-md);
   box-shadow: var(--shadow-sm);
-  border: 1px solid transparent;
+  border: 1px solid var(--color-border);
   transition: all 0.3s ease;
+  position: relative;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  border: 1px solid rgba(139, 115, 85, 0.1);
+  border-radius: calc(var(--radius-lg) - 4px);
+  pointer-events: none;
 }
 
 .review-card:hover {
@@ -340,31 +484,50 @@ a:hover {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   position: relative;
+  border: 2px solid var(--color-border);
 }
 
-.review-card.featured::before {
+.review-card.featured::after {
   content: 'FEATURED';
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: var(--color-accent-secondary);
-  color: white;
+  background: var(--color-accent);
+  color: var(--color-bg-alt);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-accent);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  z-index: 1;
+  z-index: 2;
+  border: 1px solid var(--color-accent-secondary);
 }
 
 .review-image {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+  background: linear-gradient(135deg, 
+    var(--color-accent) 0%, 
+    var(--color-accent-secondary) 50%, 
+    var(--color-accent) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 280px; /* Reduced by 20% from 350px */
   overflow: hidden;
+  position: relative;
+}
+
+.review-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(139, 115, 85, 0.2), 
+    rgba(201, 168, 106, 0.1));
+  pointer-events: none;
 }
 
 .review-img {
@@ -457,7 +620,7 @@ a:hover {
   background: var(--color-bg-alt);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  border: 1px solid transparent;
+  border: 1px solid var(--color-border);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -470,7 +633,19 @@ a:hover {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+  background: linear-gradient(90deg, 
+    var(--color-accent), 
+    var(--color-accent-secondary), 
+    var(--color-accent));
+}
+
+.project-card::after {
+  content: '⚙️';
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  opacity: 0.1;
+  font-size: 1.5rem;
 }
 
 .project-card:hover {
@@ -532,29 +707,73 @@ a:hover {
   font-family: var(--font-accent);
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   background: var(--color-accent);
-  color: white;
-  border-radius: var(--radius-sm);
-  transition: all 0.2s ease;
+  color: var(--color-bg-alt);
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid var(--color-accent-secondary);
+  box-shadow: 0 3px 6px rgba(58, 50, 34, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .project-link:hover {
   background: var(--color-accent-light);
   text-decoration: none;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(58, 50, 34, 0.15);
 }
 
-/* Footer - Modern editorial */
+.project-link:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 1px 3px rgba(58, 50, 34, 0.1);
+  transition: all 0.1s ease;
+}
+
+.project-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.project-link:hover::before {
+  left: 100%;
+}
+
+/* Footer - Warm notepad style */
 .site-footer {
   padding: var(--space-xl) 0;
-  border-top: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-header-border);
   text-align: center;
   color: var(--color-text-light);
   font-family: var(--font-meta);
   font-size: 0.9rem;
-  background: var(--color-bg-alt);
+  background: var(--color-header-bg);
   margin-top: var(--space-xl);
+  position: relative;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-accent-secondary), 
+    transparent);
+  opacity: 0.6;
 }
 
 .site-footer .container {
@@ -579,7 +798,7 @@ a:hover {
 }
 
 .footer-links a:hover {
-  background: rgba(67, 97, 238, 0.1);
+  background: var(--color-highlight);
   text-decoration: none;
 }
 
@@ -660,21 +879,49 @@ a:hover {
 .select-review-btn {
   font-family: var(--font-accent);
   font-weight: 600;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   background: var(--color-accent);
-  color: white;
-  border-radius: var(--radius-sm);
+  color: var(--color-bg-alt);
+  border-radius: 50px;
   display: inline-block;
-  transition: all 0.2s ease;
-  border: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid var(--color-accent-secondary);
   cursor: pointer;
   margin-top: var(--space-sm);
+  box-shadow: 0 3px 6px rgba(58, 50, 34, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .select-review-btn:hover {
   background: var(--color-accent-light);
   text-decoration: none;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(58, 50, 34, 0.15);
+}
+
+.select-review-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 1px 3px rgba(58, 50, 34, 0.1);
+  transition: all 0.1s ease;
+}
+
+.select-review-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.select-review-btn:hover::before {
+  left: 100%;
 }
 
 /* Selected review styling */
@@ -716,4 +963,9 @@ a:hover {
   backdrop-filter: blur(2px);
   z-index: 5;
   pointer-events: none;
+}
+
+/* Back button container - must be above overlay */
+.back-to-featured-container {
+  z-index: 10;
 }
