@@ -215,6 +215,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (featuredSection) {
         featuredSection.parentNode.insertBefore(newFeaturedContainer, featuredSection.nextSibling);
       }
+      
+      // Scroll to the selected review for better mobile experience
+      setTimeout(() => {
+        newFeaturedContainer.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      }, 100);
     }
   }
   
@@ -224,8 +233,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (overlay) {
       overlay.remove();
     }
-    
-
     
     // Show the featured review section
     const featuredSection = document.querySelector('.featured-review');
@@ -243,5 +250,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (selectedContainer) {
       selectedContainer.remove();
     }
+    
+    // Scroll back to the top of the featured review section
+    setTimeout(() => {
+      if (featuredSection) {
+        featuredSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      }
+    }, 100);
   }
 });
